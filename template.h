@@ -6,13 +6,6 @@ private:
 	size_t length;
 	size_t cap;
 public:
-	void Print()
-	{
-		for (size_t i = 0; i < length; i++)
-		{
-			std::cout << elementArray[i] << " ";
-		}
-	}
 	stack(const stack& c) : elementArray(c.elementArray), length(c.length), cap(c.cap) { }
 	stack(const T* otherArray = nullptr, const size_t& otherLength = 0)
 	{
@@ -48,6 +41,10 @@ public:
 	{
 		return cap;
 	}
+private:
+	void alloc(const size_t &); /////////////////////// se apeleaza cu scopul de  a mari memoria vectorului cu 2*lungimea actuala sau lungimea specifcata, daca e mai mare decat cea ceruta
+	void dealloc(const size_t & = 0);
+
 public:
 	
 	T Top();
@@ -62,7 +59,7 @@ public:
 	{//nush cum sa fac in afara clasei :))
 		return *elementArray;//nu sunt sigur ca e corect
 	}
-stack operator = (const stack& other) 
+    stack operator = (const stack& other) 
 {
 	elementArray = other.elementArray;
 	length = other.length;
@@ -72,8 +69,6 @@ stack operator = (const stack& other)
 }
 	bool isEmpty();
 	friend std::istream& operator>> (std::istream&, stack&);
-	void alloc(const size_t &); /////////////////////// se apeleaza cu scopul de  a mari memoria vectorului cu 2*lungimea actuala sau lungimea specifcata, daca e mai mare decat cea ceruta
-	void dealloc(const size_t & = 0);
 	friend stack operator+ (const stack& lhs,const stack& rhs)
 	{
 		stack lhsCopy = lhs;
