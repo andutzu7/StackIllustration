@@ -1,3 +1,4 @@
+#include <string>
 template <class T>
 class stack
 {
@@ -138,6 +139,13 @@ public:
  			output << s.elementArray[i] << " ";
 		return output;
 	}
+	std::string ConvertToString()
+	{
+		std::string result;
+		for (size_t i = 0; i < length; i++)
+			result.push_back((std::string)elementArray[i]);
+		return result;
+	}
 };
 template <class T>
 void stack<T>::alloc(const size_t& reqLength)
@@ -147,7 +155,7 @@ void stack<T>::alloc(const size_t& reqLength)
 	T* otherArray = new T[newSize];
 	for (size_t i = 0; i < newSize; i++)
 	{
-		otherArray[i] = 0;
+		otherArray[i] = (T)0;//aici trebuia cast pt cazuri cand bagi string sau alte kkturi;
 	}
 	for (size_t i = 0; i < length; i++)
 	{
